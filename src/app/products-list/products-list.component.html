@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+
+
+<div class="body">
+
+    <div class="row mb-5 justify-content-center">
+        <div class="col-md-6 text-center">
+            <h2 class="section-title mb-3" style="font-weight: 700; color: gray; display: block; font-size: 40px;">
+                Products table</h2>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead style="background: darkgray;">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Availability</th>
+                <th scope="col">Description</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody style="background: #eaeaea;">
+            <tr *ngFor="let product of Global.Products | paginate: Global.PaginationOptions">
+                <!-- <td>{{i +1 }}</td> -->
+                <td> {{ product.name }}</td>
+                <td>
+                    <span *ngIf="product.notAvailable===true" style="color: rgb(206, 17, 17);">Not
+                        Available</span>
+                    <span *ngIf="product.notAvailable===false" style="color: rgb(45, 190, 9);">Available</span>
+                </td>
+                <td> <span *ngFor="let description of product.descriptionPoints"> {{description}}, </span> </td>
+                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                        (click)="onSelect(product)">View
+                        Data</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <pagination-controls (pageChange)="Global.getPage($event)" style="margin: 2em auto;"></pagination-controls>
+
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    style="z-index: 9999;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(39, 39, 39);">More Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="singleProductData">
+                <img src="{{singleProductData.imageURL}}" alt="" style="width: 30px; margin: 30px auto;display: block;">
+                <h4>{{singleProductData.name}}</h4>
+                <p class="mb-4" *ngIf="singleProductData.notAvailable === false" style="color: rgb(45, 190, 9);">
+                    Available
+                </p>
+                <p class="mb-4" *ngIf="singleProductData.notAvailable === true" style="color: rgb(206, 17, 17);">Not
+                    Available</p>
+                <ul *ngFor="let description of singleProductData.descriptionPoints">
+                    <li>{{description}}</li>
+                </ul>
+                <p>{{ singleProductData.descriptionText }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,260 @@
+<app-navbar></app-navbar>
+
+<!-- slider -->
+
+<div class="site-blocks-cover overlay"
+    style="background-image: url(../../assets/images/hero_2.jpg);     background-position: top;" data-aos="fade"
+    data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+
+            <div class="col-md-12" data-aos="fade-up" data-aos-delay="400">
+
+                <div class="row mb-4">
+                    <div class="col-md-7">
+                        <h1>Shop With Us</h1>
+                        <p class="mb-5 lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+                            assumenda ea
+                            quo cupiditate facere deleniti fuga officia.</p>
+                        <div>
+                            <a href="#"
+                                class="btn btn-white btn-outline-white py-3 px-5 rounded-0 mb-lg-0 mb-2 d-block d-sm-inline-block">Shop
+                                Now</a>
+                            <a href="#" class="btn btn-white py-3 px-5 rounded-0 d-block d-sm-inline-block">Club
+                                Membership</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- product -->
+
+
+<div class="site-section" id="products-section">
+    <div class="container">
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-6 text-center">
+                <h3 class="section-sub-title">Popular Products</h3>
+                <h2 class="section-title mb-3">Our Products</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae nostrum natus excepturi fuga
+                    ullam
+                    accusantium vel ut eveniet aut consequatur laboriosam ipsam.</p>
+            </div>
+        </div>
+        <div class="row" *ngIf="Global.Products?.length > 0">
+            <div class="col-lg-3 col-md-6 mb-5"
+                *ngFor="let product of Global.Products | paginate: Global.PaginationOptions">
+                <div class="product-item">
+                    <figure>
+                        <img src="{{product.imageURL}}" alt="Image" class="img-fluid" style="max-width: 50px">
+                        <!-- <img src="../../assets/images/model_1_bg.jpg" alt="Image" class="img-fluid"> -->
+                    </figure>
+                    <div class="px-4">
+                        <h3><a href="#"> {{product.name}} </a></h3>
+                        <div class="mb-3">
+                            <span class="meta-icons mr-3"><a href="#" class="mr-2"><span
+                                        class="fa fa-star text-warning"></span></a> 5.0</span>
+                            <span class="meta-icons wishlist"><a href="#" class="mr-2"><span
+                                        class="fa fa-heart"></span></a>
+                                29</span>
+                        </div>
+                        <p class="mb-4" *ngIf="product.notAvailable === false" style="color: rgb(45, 190, 9);">Available
+                        </p>
+                        <p class="mb-4" *ngIf="product.notAvailable === true" style="color: rgb(206, 17, 17);">Not
+                            Available</p>
+                        <div>
+                            <!-- <button class="btn btn-black mr-1 rounded-0">Cart</button> -->
+                            <button class="btn btn-black btn-outline-black ml-1 rounded-0" (click)="onSelect(product)"
+                                data-toggle="modal" data-target="#exampleModal">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <pagination-controls (pageChange)="Global.getPage($event)" style="margin: 4em auto;"></pagination-controls>
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- data Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    style="z-index: 9999;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(39, 39, 39);">More Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="singleProductData">
+                <img src="{{singleProductData.imageURL}}" alt="" style="width: 30px; margin: 30px auto;display: block;">
+                <h4>{{singleProductData.name}}</h4>
+                <p class="mb-4" *ngIf="singleProductData.notAvailable === false" style="color: rgb(45, 190, 9);">
+                    Available
+                </p>
+                <p class="mb-4" *ngIf="singleProductData.notAvailable === true" style="color: rgb(206, 17, 17);">Not
+                    Available</p>
+                <ul *ngFor="let description of singleProductData.descriptionPoints">
+                    <li>{{description}}</li>
+                </ul>
+                <p>{{ singleProductData.descriptionText }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-6 text-center">
+                <h3 class="section-sub-title">My Bio</h3>
+                <h2 class="section-title mb-3">ABOUT ME</h2>
+            </div>
+        </div>
+
+        <div class="bg-white py-4">
+            <div class="row mx-4 my-4 product-item-2 align-items-start">
+                <div class="col-md-6 mb-5 mb-md-0 order-1 order-md-2">
+                    <img src="../../assets/images/myPic3.jpg" alt="Image" class="img-fluid">
+                </div>
+
+                <div class="col-md-5 mr-auto product-title-wrap order-2 order-md-1">
+                    <span class="number">...</span>
+                    <h3 class="text-black mb-4 font-weight-bold">About Me..</h3>
+                    <p class="mb-4">I am a Developer with industry experience building software, web and mobile
+                        applications. I
+                        worked on plenty of projects with people from different backgrounds.<br />
+
+                        My specialties include quickly learning new skills and programming languages, problem
+                        solving, application optimization. I'm still enthusiastically grabbing onto any other
+                        programming languages, frameworks, or principles i can integrate into the coding Software,
+                        Web and Mobile in my head.<br />
+
+                        in Addition i'm experienced on designing in which i'm able to work and create lot of things
+                        (logos, flyers, business cards, posters...) with Adobe Photoshop and Adobe Illustrator.<br />
+
+                        I am a hard-worker, motivated, fast learner, a team player and work tirelessly to get the
+                        job done. I strive for success.</p>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="site-blocks-cover inner-page-cover overlay get-notification"
+    style="background-image: url(../../assets/images/dmBackground.png); background-attachment: fixed; background-position: top;" data-aos="fade">
+    <div class="container">
+
+        <div class="row align-items-center justify-content-center">
+            <form class="col-md-7" method="post">
+                <h2>Get notified on each updates.</h2>
+                <div class="d-flex mb-4">
+                    <input type="text" class="form-control rounded-0" placeholder="Enter your email address">
+                    <input type="submit" class="btn btn-white btn-outline-white rounded-0" value="Subscribe">
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat commodi veniam doloremque ducimus
+                    tempora.</p>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="site-section bg-light" id="services-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h3 class="section-sub-title">Our Services</h3>
+                <h2 class="section-title mb-3">We Offer Services</h2>
+            </div>
+        </div>
+        <div class="row align-items-stretch">
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
+                <div class="unit-4 d-flex">
+                    <div class="unit-4-icon mr-4"><span class="text-primary fas fa-pie_chart"></span></div>
+                    <div>
+                        <h3 class="services-titles">Business Consulting</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae
+                            eligendi
+                            at.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="unit-4 d-flex">
+                    <div class="unit-4-icon mr-4"><span class="text-primary fas fa-backspace"></span></div>
+                    <div>
+                        <h3 class="services-titles">Market Analysis</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae
+                            eligendi
+                            at.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="unit-4 d-flex">
+                    <div class="unit-4-icon mr-4"><span class="text-primary icon-av_timer"></span></div>
+                    <div>
+                        <h3 class="services-titles">User Monitoring</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae
+                            eligendi
+                            at.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="unit-4 d-flex">
+                    <div class="unit-4-icon mr-4"><span class="text-primary icon-beenhere"></span></div>
+                    <div>
+                        <h3 class="services-titles">Seller Consulting</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae
+                            eligendi
+                            at.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="unit-4 d-flex">
+                    <div class="unit-4-icon mr-4"><span class="text-primary icon-business_center"></span></div>
+                    <div>
+                        <h3 class="services-titles">Financial Investment</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae
+                            eligendi
+                            at.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="unit-4 d-flex">
+                    <div class="unit-4-icon mr-4"><span class="text-primary icon-cloud_done"></span></div>
+                    <div>
+                        <h3 class="services-titles">Financial Management</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae
+                            eligendi
+                            at.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
