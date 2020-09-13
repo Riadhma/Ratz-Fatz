@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import * as io from 'socket.io-client'
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class WebsocketService {
 
 
   constructor(private spinner: NgxSpinnerService) {
-    this.socket = io('http://localhost:3000');
+    this.socket = io(environment.URL);
   }
 
 

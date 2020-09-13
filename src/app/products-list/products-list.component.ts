@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { GlobalService } from '../global.service'
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment.prod';
 
-const baseUrl = `http://localhost:3000/`;
+const baseUrl = environment.URL;
 
 
 @Component({

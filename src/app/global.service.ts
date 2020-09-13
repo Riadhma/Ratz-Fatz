@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment.prod';
 import { WebsocketService } from './websocket.service'
 
-const baseUrl = `http://localhost:3000/`;
+
+const baseUrl = environment.URL;
 
 @Injectable({
   providedIn: 'root'

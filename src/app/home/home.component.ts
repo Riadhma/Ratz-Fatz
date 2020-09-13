@@ -3,9 +3,10 @@ import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common
 import { WebsocketService } from '../websocket.service'
 import { NgxSpinnerService } from 'ngx-spinner';
 import { GlobalService } from '../global.service'
+import { environment } from 'src/environments/environment.prod';
 
 
-const baseUrl = `http://localhost:3000/`;
+const baseUrl = environment.URL;
 
 @Component({
   selector: 'app-home',
