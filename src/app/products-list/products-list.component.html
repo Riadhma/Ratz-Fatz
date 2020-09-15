@@ -24,9 +24,10 @@
                 <!-- <td>{{i +1 }}</td> -->
                 <td> {{ product.name }}</td>
                 <td>
-                    <span *ngIf="product.notAvailable===true" style="color: rgb(206, 17, 17);">Not
+                    <span *ngIf="product.inStock===false" style="color: rgb(206, 17, 17);">Not
                         Available</span>
-                    <span *ngIf="product.notAvailable===false" style="color: rgb(45, 190, 9);">Available</span>
+                    <span *ngIf="product.inStock===true" style="color: rgb(45, 190, 9);">Available ({{product.pieces}}
+                        Stücke)</span>
                 </td>
                 <td> <span *ngFor="let description of product.descriptionPoints"> {{description}}, </span> </td>
                 <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
@@ -58,10 +59,10 @@
             <div class="modal-body" *ngIf="singleProductData">
                 <img src="{{singleProductData.imageURL}}" alt="" style="width: 30px; margin: 30px auto;display: block;">
                 <h4>{{singleProductData.name}}</h4>
-                <p class="mb-4" *ngIf="singleProductData.notAvailable === false" style="color: rgb(45, 190, 9);">
-                    Available
+                <p class="mb-4" *ngIf="singleProductData.inStock === true" style="color: rgb(45, 190, 9);">
+                    Available ({{singleProductData.pieces}} Stücke)
                 </p>
-                <p class="mb-4" *ngIf="singleProductData.notAvailable === true" style="color: rgb(206, 17, 17);">Not
+                <p class="mb-4" *ngIf="singleProductData.inStock === false" style="color: rgb(206, 17, 17);">Not
                     Available</p>
                 <ul *ngFor="let description of singleProductData.descriptionPoints">
                     <li>{{description}}</li>

@@ -62,9 +62,10 @@
                                         class="fa fa-heart"></span></a>
                                 29</span>
                         </div>
-                        <p class="mb-4" *ngIf="product.notAvailable === false" style="color: rgb(45, 190, 9);">Available
+                        <p class="mb-4" *ngIf="product.inStock === true" style="color: rgb(45, 190, 9);">Available
+                            ({{product.pieces}} Stücke)
                         </p>
-                        <p class="mb-4" *ngIf="product.notAvailable === true" style="color: rgb(206, 17, 17);">Not
+                        <p class="mb-4" *ngIf="product.inStock === false" style="color: rgb(206, 17, 17);">Not
                             Available</p>
                         <div>
                             <!-- <button class="btn btn-black mr-1 rounded-0">Cart</button> -->
@@ -97,10 +98,10 @@
             <div class="modal-body" *ngIf="singleProductData">
                 <img src="{{singleProductData.imageURL}}" alt="" style="width: 30px; margin: 30px auto;display: block;">
                 <h4>{{singleProductData.name}}</h4>
-                <p class="mb-4" *ngIf="singleProductData.notAvailable === false" style="color: rgb(45, 190, 9);">
-                    Available
+                <p class="mb-4" *ngIf="singleProductData.inStock === true" style="color: rgb(45, 190, 9);">
+                    Available ({{singleProductData.pieces}} Stücke)
                 </p>
-                <p class="mb-4" *ngIf="singleProductData.notAvailable === true" style="color: rgb(206, 17, 17);">Not
+                <p class="mb-4" *ngIf="singleProductData.inStock === false" style="color: rgb(206, 17, 17);">Not
                     Available</p>
                 <ul *ngFor="let description of singleProductData.descriptionPoints">
                     <li>{{description}}</li>
