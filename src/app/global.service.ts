@@ -38,7 +38,7 @@ export class GlobalService {
         console.log(res)
         this.products = res.arrayOfProductData
         this.receivedData = res;
-        this.paginationOptions.totalItems = res.totalItems - 20;
+        this.paginationOptions.totalItems = res.totalItems - 40;
         this.paginationOptions.currentPage = res.currentPage;
         this.paginationOptions.itemsPerPage = res.itemPerPage
         this.Init = false;
